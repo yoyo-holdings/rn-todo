@@ -1,5 +1,4 @@
-# TITLE: ReactNative TODO App
-# AUTHOR: Alleo Indong <alleo.indong@yoyo-holdings.com>
+# ReactNative TODO App
 
 ReactNative TODO App is [[https://github.com/yoyo-holdings][YOYO]]'s technical test.  This is a standard Mobile
 application that provides a simple organizer for the user to store notes
