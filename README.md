@@ -65,6 +65,6 @@ and TODOs.
     complete this test, so long as the resulting app is a standard
     Android application that can be built using the standard tooling:
 
-    #+BEGIN_SRC sh
+    ```sh
       ./gradlew clean assembleDebug
-    #+END_SRC
+    ```
