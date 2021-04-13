@@ -19,10 +19,10 @@ and TODOs.
 * Specifications
 
   1. The app consists of two major activities:
-     - a note-taking activity that accepts a =title= and =text= for one
+     - a note-taking activity that accepts a `title` and `text` for one
        or more notes
-     - a TODO tracking activity that accepts an =entry=, with a
-       =checkbox= to show whether this entry has been done or not done
+     - a TODO tracking activity that accepts an `entry`, with a
+       `checkbox` to show whether this entry has been done or not done
   2. The app should have a user interface that allows for easy access
      between the note-taking and TODO tracking activities as well as to
      see their details at a glance.
