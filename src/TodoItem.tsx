@@ -26,11 +26,7 @@ export default function TodoItem(props: { item: { completed: boolean; text: bool
             style={styles.checkbox}
             />
             <Text style={[{fontSize: 24}]}>{props.item.text}</Text>
-            <TouchableOpacity
-                style={styles.delete}
-                onPress={() => props.deleteFunction()}>
-                <Text style={{color: '#fafafa'}}>X</Text>
-            </TouchableOpacity>
+            <Button text="X" handleClick={props.deleteFunction}/>
         </TouchableOpacity>
         </View>
 
