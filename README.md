@@ -42,15 +42,15 @@ and TODOs.
 
   In your PR/patch email, please also answer these following questions:
 
-  - What design patterns did you use inside the application?
-  - How did you manage your states?
-  - What libraries did you use?
-    + Why did you use this library?
-    + Are there other libraries available?
-    + If yes, what made you choose this library over the others?
-  - What major challenges did you encounter when making the app?
+  - What design patterns did you use inside the application? I'm still in the process of learning and still didnt used this before.
+  - How did you manage your states? I manage it by using React Hooks useState, by using it i can easily manipulate the state of a functional component without needing to convert them into class components.
+  - What libraries did you use? I used a lot of libraries here. React, React-Native, React Navigation, @react-native-community
+    + Why did you use this library? I used these libraries mostly for designing UI
+    + Are there other libraries available? Yes, actually a lot of libraries are available.
+    + If yes, what made you choose this library over the others? I chose these libraries over the others because these libraries are the ones who are active and updated and a lot of programmers are using it. Also the documentation of these libraries are easy to understand.
+  - What major challenges did you encounter when making the app? One of the major challenge i encountered with this is the passing of data, and since i am using Typescript, i needed to indicate all types.
   - If you had more time, what additional features would you like to
-    add?
+    add? I would love to add a few more features to this, like adding the time when the notes/todo were being added. Also attaching photos to our todos and notes so that you can easily remember what you needed to do .Attaching voice record is one as well, it is for those people who doesnt know how to read and write, also to some other pwd's, so that they will just record and play their notes and todo's.
 
   In addition, you may provide more information in your PR/patch email
   that you would like us to know.
