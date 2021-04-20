@@ -6,11 +6,11 @@ export default function TodoItem(props: { item: { completed: boolean; text: bool
     const [isSelected, setSelection] = useState(true);
 
     // Update style according to props
-    let style = props.item.completed ? {
-        textDecorationLine: 'line-through'
-    } : {
-        textDecorationLine: 'none'
-    }
+    // let style = props.item.completed ? {
+    //     textDecorationLine: 'line-through'
+    // } : {
+    //     textDecorationLine: 'none'
+    // }
 
 
 
@@ -50,16 +50,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
       },
     delete: {
-        marginRight: -80,
+        marginRight: 10,
         padding: 8, 
         backgroundColor: '#212121', 
         justifyContent: 'center', 
         alignItems: 'center', 
         borderRadius: 8
     },
-    delete2: {
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        marginRight:  10
-    }, 
+   
 });
