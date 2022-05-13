@@ -1,6 +1,6 @@
 # ReactNative TODO App
 
-ReactNative TODO App is [YOYO](https://github.com/yoyo-holdings)'s technical test.  This is a standard Mobile
+React TODO App is [YOYO](https://github.com/yoyo-holdings)'s technical test.  This is a standard 
 application that provides a simple organizer for the user to store notes
 and TODOs.
 
@@ -35,8 +35,8 @@ and TODOs.
      TODO-tracking activities.
   6. The app should make it easy to switch a note to a TODO entry, and
      vice versa.
-  7. The release APK should target Android devices running version 4.4
-     (KitKat) and up.
+  7. The app should consists of both frontend and backend.
+  7. Deploy your app on vercel, heroku, netlify, replit or whichever platform you choose and we can easily view it
 
 * Questions
 
@@ -63,8 +63,4 @@ and TODOs.
     improve the user experience.
   - You may use any development tools you have at your disposal to
     complete this test, so long as the resulting app is a standard
-    Android application that can be built using the standard tooling:
-
-    ```sh
-      ./gradlew clean assembleDebug
-    ```
+    JS/NodeJS application that can be built using the standard tooling
