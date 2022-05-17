@@ -48,6 +48,16 @@ function NoteScreen() {
     }
   };
 
+  const deleteNote = async id => {
+    try {
+      const copyArray = NoteList.filter(note => note.id !== id);
+      await AsyncStorage.setItem('usernote', JSON.stringify(copyArray));
+      setNoteList(copyArray);
+    } catch (error) {
+      ToastAndroid.show(error.message, ToastAndroid.LONG);
+    }
+  };
+
   const addNote = async () => {
     try {
       const newNote = {
@@ -159,7 +169,7 @@ function NoteScreen() {
                       _light={{
                         color: 'white',
                       }}
-                      //onPress={addTodo}
+                      onPress={() => deleteNote(note.id)}
                     />
                   </Stack>
                 </Stack>
