@@ -8,7 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from 'Theme/colors';
 import TodoScreen from 'Components/Screens/TodoScreen';
 
-function NotesScreen() {
+function NoteScreen() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Notes!</Text>
@@ -40,7 +40,7 @@ export default function App() {
             headerShown: false,
           })}>
           <Tab.Screen name="Todo" component={TodoScreen} />
-          <Tab.Screen name="Notes" component={NotesScreen} />
+          <Tab.Screen name="Note" component={NoteScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

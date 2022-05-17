@@ -163,7 +163,7 @@ function TodoScreen() {
           <Text style={styles.userSubtitle}>Your To-Do List :</Text>
 
           {todoList.length > 0 ? (
-            todoList.map((todo, index) => (
+            todoList.map(todo => (
               <Box w="100%" style={styles.cardTodo} key={todo.id}>
                 <Input
                   InputLeftElement={
@@ -297,11 +297,6 @@ const styles = StyleSheet.create({
     fontFamily: font.PoppinsBold,
     color: colors.white,
     marginBottom: 8,
-  },
-  userTextContainer: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    marginTop: -350,
   },
   todoInputContainer: {
     backgroundColor: colors.white,
