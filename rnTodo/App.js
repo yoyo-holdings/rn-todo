@@ -5,7 +5,8 @@ import {NativeBaseProvider} from 'native-base';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import TodoScreen from './src/Components/Screens/TodoScreen';
+import colors from 'Theme/colors';
+import TodoScreen from 'Components/Screens/TodoScreen';
 
 function NotesScreen() {
   return (
@@ -34,7 +35,7 @@ export default function App() {
 
               return <Ionicons name={iconName} size={size} color={color} />;
             },
-            tabBarActiveTintColor: 'tomato',
+            tabBarActiveTintColor: colors.purple,
             tabBarInactiveTintColor: 'gray',
             headerShown: false,
           })}>

@@ -21,9 +21,9 @@ import {v4 as uuidv4} from 'uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {CustomHeader} from '../Layout/CustomHeader';
-import font from '../../Theme/font';
-import colors from '../../Theme/colors';
+import {CustomHeader} from 'Components/Layout/CustomHeader';
+import font from 'Theme/font';
+import colors from 'Theme/colors';
 
 function TodoScreen() {
   const [todoList, setTodoList] = useState([]);
@@ -35,8 +35,6 @@ function TodoScreen() {
   useEffect(() => {
     getTodo();
   }, []);
-
-  // console.log(todoList, 'todoList');
 
   const toggleTodo = async (id, key, value) => {
     try {
