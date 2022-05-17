@@ -45,3 +45,7 @@ export FORCE_BUNDLING=true
 cd ./android
 
 ./gradlew clean assembleRelease
+
+## APK
+
+Download it [Here](https://github.com/raynormw/rn-todo/blob/main/bakulio-release.apk)
