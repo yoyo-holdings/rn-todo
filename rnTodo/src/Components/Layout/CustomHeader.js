@@ -2,7 +2,7 @@ import React from 'react';
 import {HStack, Box} from 'native-base';
 import {StatusBar} from 'react-native';
 
-import colors from 'Theme/colors';
+import colors from '../../Theme/colors';
 
 export const CustomHeader = () => {
   return (

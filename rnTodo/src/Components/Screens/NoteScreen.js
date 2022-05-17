@@ -11,8 +11,7 @@ import {
   Icon,
   Input,
   Text,
-  HStack,
-  Center,
+  Stack,
   Button,
   Modal,
   FormControl,
@@ -21,9 +20,9 @@ import {v4 as uuidv4} from 'uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {CustomHeader} from 'Components/Layout/CustomHeader';
-import font from 'Theme/font';
-import colors from 'Theme/colors';
+import {CustomHeader} from '../Layout/CustomHeader';
+import font from '../../Theme/font';
+import colors from '../../Theme/colors';
 
 function NoteScreen() {
   const [NoteList, setNoteList] = useState([]);
@@ -33,6 +32,8 @@ function NoteScreen() {
   useEffect(() => {
     getNote();
   }, []);
+
+  console.log(NoteList, 'NoteList');
 
   const getNote = async () => {
     try {
@@ -56,7 +57,7 @@ function NoteScreen() {
         date: new Date(),
       };
       await AsyncStorage.setItem(
-        'usertodo',
+        'usernote',
         JSON.stringify([...NoteList, newNote]),
       );
       setNoteList([...NoteList, newNote]);
@@ -79,73 +80,97 @@ function NoteScreen() {
             <Text style={styles.userSubtitle}>Add New Note?</Text>
           </View>
           <Box w="100%" style={styles.noteInputContainer}>
-            <Input
-              placeholder="Title"
-              style={styles.noteInput}
-              value={newNoteTitle}
-              onChangeText={val => setNewNoteTitle(val)}
-              _light={{
-                placeholderTextColor: 'blueGray.400',
-              }}
-              _dark={{
-                placeholderTextColor: 'blueGray.50',
-              }}
-            />
-            <Input
-              placeholder="Text"
-              style={styles.noteInput}
-              value={newNoteText}
-              onChangeText={val => setNewNoteText(val)}
-              _light={{
-                placeholderTextColor: 'blueGray.400',
-              }}
-              _dark={{
-                placeholderTextColor: 'blueGray.50',
-              }}
-            />
-            <Button
-              onPress={addNote}
-              style={{
-                justifyContent: 'center',
-                height: 40,
-                backgroundColor: colors.purple,
-                marginTop: 10,
-                borderRadius: 5,
-              }}>
+            <Box style={styles.boxInput}>
+              <Input
+                placeholder="Title"
+                style={styles.noteInput}
+                value={newNoteTitle}
+                onChangeText={val => setNewNoteTitle(val)}
+                _light={{
+                  placeholderTextColor: 'blueGray.400',
+                }}
+                _dark={{
+                  placeholderTextColor: 'blueGray.50',
+                }}
+              />
+            </Box>
+            <Box style={styles.boxInput}>
+              <Input
+                placeholder="Text"
+                style={styles.noteInput}
+                value={newNoteText}
+                onChangeText={val => setNewNoteText(val)}
+                _light={{
+                  placeholderTextColor: 'blueGray.400',
+                }}
+                _dark={{
+                  placeholderTextColor: 'blueGray.50',
+                }}
+              />
+            </Box>
+            <Button onPress={addNote} style={styles.btnInput}>
               <Text>Add</Text>
             </Button>
           </Box>
         </ImageBackground>
 
         <View style={styles.noteContainer}>
-          <Text style={styles.userSubtitle}>Your Note List :</Text>
-        </View>
+          <Text style={[styles.userSubtitle, {color: colors.black}]}>
+            Your Note List :
+          </Text>
 
-        {NoteList.length > 0 ? (
-          NoteList.map(note => (
-            <Box w="100%" style={styles.cardNote} key={note.id}>
-              <Text
-                numberOfLines={1}
-                style={{
-                  width: '100%',
-                  fontFamily: font.PoppinsBold,
-                }}>
-                {note.title.toUpperCase()}
-              </Text>
-              <Text
-                numberOfLines={3}
-                style={{
-                  width: '100%',
-                }}>
-                {note.text}
-              </Text>
-            </Box>
-          ))
-        ) : (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>Your Note is Empty..</Text>
-          </View>
-        )}
+          {NoteList.length > 0 ? (
+            NoteList.map(note => (
+              <Box key={note.id}>
+                <Stack
+                  mb="2.5"
+                  mt="1.5"
+                  pl="2"
+                  pb="1"
+                  direction="row"
+                  w="100%"
+                  bg="primary.600"
+                  rounded="sm"
+                  shadow={'3'}
+                  style={{justifyContent: 'space-between'}}>
+                  <Stack direction="column">
+                    <Text fontSize="2xl" style={styles.note}>
+                      {note.title.toUpperCase()}
+                    </Text>
+                    <Text fontSize="lg" style={styles.note}>
+                      {note.text}
+                    </Text>
+                  </Stack>
+                  <Stack direction="row">
+                    <Icon
+                      as={<Ionicons name="create-outline" />}
+                      size="md"
+                      m={2}
+                      style={{marginRight: 0}}
+                      _light={{
+                        color: 'white',
+                      }}
+                      //onPress={addTodo}
+                    />
+                    <Icon
+                      as={<Ionicons name="trash-outline" />}
+                      size="md"
+                      m={2}
+                      _light={{
+                        color: 'white',
+                      }}
+                      //onPress={addTodo}
+                    />
+                  </Stack>
+                </Stack>
+              </Box>
+            ))
+          ) : (
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>Your Note is Empty..</Text>
+            </View>
+          )}
+        </View>
       </ScrollView>
     </>
   );
@@ -174,23 +199,36 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   noteInputContainer: {
-    backgroundColor: colors.white,
-    borderRadius: 5,
     borderColor: 'transparent',
+  },
+  boxInput: {
+    backgroundColor: colors.white,
+    marginTop: 8,
+    borderRadius: 5,
+  },
+  btnInput: {
+    justifyContent: 'center',
+    height: 40,
+    backgroundColor: colors.purple,
+    marginTop: 10,
+    borderRadius: 5,
   },
   noteInput: {
     fontFamily: font.PoppinsRegular,
     fontSize: 16,
   },
-  todoContainer: {
-    marginTop: -215,
+  noteContainer: {
+    marginTop: -100,
     paddingHorizontal: 16,
   },
   cardNote: {
+    flexDirection: 'column',
     borderRadius: 5,
     elevation: 0,
     borderColor: 'transparent',
-    backgroundColor: colors.white,
+  },
+  note: {
+    color: colors.white,
   },
   emptyContainer: {
     height: 100,

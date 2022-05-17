@@ -5,16 +5,17 @@ import {NativeBaseProvider} from 'native-base';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import colors from 'Theme/colors';
-import TodoScreen from 'Components/Screens/TodoScreen';
+import colors from './src/Theme/colors';
+import TodoScreen from './src/Components/Screens/TodoScreen';
+import NoteScreen from './src/Components/Screens/NoteScreen';
 
-function NoteScreen() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Notes!</Text>
-    </View>
-  );
-}
+// function NoteScreen() {
+//   return (
+//     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+//       <Text>Notes!</Text>
+//     </View>
+//   );
+// }
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,7 @@ export default function App() {
 
               if (route.name === 'Todo') {
                 iconName = focused ? 'today' : 'today-outline';
-              } else if (route.name === 'Notes') {
+              } else if (route.name === 'Note') {
                 iconName = focused ? 'book' : 'book-outline';
               }
 
