@@ -1,3 +1,5 @@
 export const TYPOGRAPHY = {
-  smallRegular: "font-roboto-regular text-lg",
+  smallRegular: "font-regular text-sm",
+  smallMedium: "font-medium text-sm",
+  smallBold: "font-bold text-sm",
 }

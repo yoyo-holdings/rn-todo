@@ -1,7 +1,4 @@
 export default {
-  colors: {
-    // custom colors (recomended using HEX)
-  },
   spacing: {
     // custom spacing
   },
@@ -15,10 +12,9 @@ export default {
   },
   font: {
     family: {
-      // font family
-    },
-    size: {
-      // font size
+      regular: "Roboto-Regular",
+      medium: "Roboto-Medium",
+      bold: "Roboto-Bold",
     },
   },
-};
+}
