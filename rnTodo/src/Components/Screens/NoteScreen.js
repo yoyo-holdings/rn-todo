@@ -33,7 +33,7 @@ function NoteScreen() {
     getNote();
   }, []);
 
-  console.log(NoteList, 'NoteList');
+  // console.log(NoteList, 'NoteList');
 
   const getNote = async () => {
     try {
@@ -42,6 +42,7 @@ function NoteScreen() {
       if (currentNote === null) {
         currentNote = [];
       }
+      currentNote.sort((a, b) => new Date(b.date) - new Date(a.date));
       setNoteList(currentNote);
     } catch (error) {
       ToastAndroid.show(error.message, ToastAndroid.LONG);
@@ -66,11 +67,10 @@ function NoteScreen() {
         text: newNoteText,
         date: new Date(),
       };
-      await AsyncStorage.setItem(
-        'usernote',
-        JSON.stringify([...NoteList, newNote]),
-      );
-      setNoteList([...NoteList, newNote]);
+      const mergeNote = [...NoteList, newNote];
+      mergeNote.sort((a, b) => new Date(b.date) - new Date(a.date));
+      await AsyncStorage.setItem('usernote', JSON.stringify(mergeNote));
+      setNoteList(mergeNote);
       setNewNoteTitle('');
       setNewNoteText('');
     } catch (error) {
