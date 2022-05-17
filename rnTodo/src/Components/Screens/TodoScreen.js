@@ -17,6 +17,7 @@ import {
   Modal,
   FormControl,
 } from 'native-base';
+import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';

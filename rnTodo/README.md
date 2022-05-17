@@ -7,7 +7,7 @@
 Node version 16.13.0
 NPM version 8.1.0
 Yarn version >= 1.10.1
-
+Emulator: Google Pixel 3a API 31 Arm64-8va
 
 # install dependencies
 yarn install
