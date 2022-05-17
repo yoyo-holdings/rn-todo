@@ -6,7 +6,17 @@ import {
   ImageBackground,
   ToastAndroid,
 } from 'react-native';
-import {Box, Icon, Input, Text} from 'native-base';
+import {
+  Box,
+  Icon,
+  Input,
+  Text,
+  HStack,
+  Center,
+  Button,
+  Modal,
+  FormControl,
+} from 'native-base';
 import {v4 as uuidv4} from 'uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -18,12 +28,15 @@ import colors from '../../Theme/colors';
 function TodoScreen() {
   const [todoList, setTodoList] = useState([]);
   const [newTodoName, setNewTodoName] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [todoId, setTodoId] = useState('');
+  const [todoEdit, setTodoEdit] = useState('');
 
   useEffect(() => {
     getTodo();
   }, []);
 
-  console.log(todoList, 'todoList');
+  // console.log(todoList, 'todoList');
 
   const toggleTodo = async (id, key, value) => {
     try {
@@ -35,6 +48,35 @@ function TodoScreen() {
     } catch (error) {
       ToastAndroid.show(error.message, ToastAndroid.LONG);
     }
+  };
+
+  const openModal = (modal, id) => {
+    setShowModal(true);
+    setTodoId(id);
+  };
+
+  const editTodo = async () => {
+    try {
+      const copyArray = todoList.map(todo => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            name: todoEdit,
+            isChecked: todo.isChecked,
+          };
+        } else {
+          return todo;
+        }
+      });
+      await AsyncStorage.setItem('usertodo', JSON.stringify(copyArray));
+      setTodoList(copyArray);
+    } catch (error) {
+      ToastAndroid.show(error.message, ToastAndroid.LONG);
+    }
+
+    setShowModal(false);
+    setTodoId('');
+    setTodoEdit('');
   };
 
   const deleteTodo = async id => {
@@ -54,7 +96,6 @@ function TodoScreen() {
         name: newTodoName,
         isChecked: false,
       };
-      console.log(newTodo, 'newTodo');
       await AsyncStorage.setItem(
         'usertodo',
         JSON.stringify([...todoList, newTodo]),
@@ -157,7 +198,6 @@ function TodoScreen() {
                       : 'none',
                   }}
                   value={todo.name}
-                  onChangeText={val => setNewTodoName(val)}
                   _light={{
                     placeholderTextColor: 'blueGray.400',
                   }}
@@ -165,18 +205,31 @@ function TodoScreen() {
                     placeholderTextColor: 'blueGray.50',
                   }}
                   InputRightElement={
-                    <Icon
-                      as={<Ionicons name={'trash-outline'} />}
-                      size="md"
-                      m={2}
-                      _light={{
-                        color: 'black',
-                      }}
-                      _dark={{
-                        color: 'gray.300',
-                      }}
-                      onPress={() => deleteTodo(todo.id)}
-                    />
+                    <HStack space={2} justifyContent="flex-end">
+                      <Icon
+                        as={<Ionicons name={'create-outline'} />}
+                        size="md"
+                        _light={{
+                          color: 'black',
+                        }}
+                        _dark={{
+                          color: 'gray.300',
+                        }}
+                        onPress={() => openModal(true, todo.id)}
+                      />
+                      <Icon
+                        style={{marginRight: 8}}
+                        as={<Ionicons name={'trash-outline'} />}
+                        size="md"
+                        _light={{
+                          color: 'black',
+                        }}
+                        _dark={{
+                          color: 'gray.300',
+                        }}
+                        onPress={() => deleteTodo(todo.id)}
+                      />
+                    </HStack>
                   }
                 />
               </Box>
@@ -186,6 +239,39 @@ function TodoScreen() {
               <Text style={styles.emptyText}>Your Todo is Empty..</Text>
             </View>
           )}
+
+          <Center>
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+              <Modal.Content maxWidth="400px">
+                <Modal.CloseButton />
+                <Modal.Header>Edit Todo</Modal.Header>
+                <Modal.Body>
+                  <FormControl>
+                    <FormControl.Label>Todo</FormControl.Label>
+                    <Input value={todoEdit} onChangeText={setTodoEdit} />
+                  </FormControl>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button.Group space={2}>
+                    <Button
+                      variant="ghost"
+                      colorScheme="blueGray"
+                      onPress={() => {
+                        setShowModal(false);
+                      }}>
+                      Cancel
+                    </Button>
+                    <Button
+                      onPress={() => {
+                        editTodo();
+                      }}>
+                      Save
+                    </Button>
+                  </Button.Group>
+                </Modal.Footer>
+              </Modal.Content>
+            </Modal>
+          </Center>
         </View>
       </ScrollView>
     </>
