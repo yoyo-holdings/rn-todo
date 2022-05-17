@@ -1,0 +1,172 @@
+{
+  "name": "osmitsx",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "pre-commit": "tsc --noEmit && lint-staged",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.2.0",
+    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native-stack": "^6.4.1",
+    "@react-navigation/stack": "^6.1.1",
+    "@types/i18n-js": "^3.8.2",
+    "@types/lodash": "^4.14.178",
+    "apisauce": "^2.1.5",
+    "i18n-js": "^3.8.0",
+    "lodash": "^4.17.21",
+    "osmicsx": "^0.7.0-alpha.10",
+    "react": "17.0.2",
+    "react-native": "0.67.2",
+    "react-native-config": "^1.4.5",
+    "react-native-gesture-handler": "^2.2.0",
+    "react-native-localize": "^2.1.9",
+    "react-native-mmkv-storage": "^0.7.5",
+    "react-native-network-logger": "^1.12.0",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.2",
+    "react-native-simple-toast": "^1.1.3",
+    "reactotron-react-native": "5.0.1",
+    "recoil": "^0.7.3-alpha.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-decorators": "7.17.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.16.7",
+    "@babel/plugin-proposal-optional-catch-binding": "7.16.7",
+    "@babel/plugin-transform-react-jsx": "^7.16.7",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^3.0.1",
+    "@rnx-kit/metro-config": "^1.2.26",
+    "@rnx-kit/metro-resolver-symlinks": "^0.1.15",
+    "@types/jest": "26.0.23",
+    "@types/react": "17.0.37",
+    "@types/react-native": "0.66.15",
+    "@types/react-test-renderer": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "5.7.0",
+    "@typescript-eslint/parser": "5.7.0",
+    "babel-jest": "26.6.3",
+    "babel-loader": "8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "7.15.0",
+    "eslint-config-prettier": "7.0.0",
+    "eslint-config-standard": "16.0.2",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-native": "3.10.0",
+    "husky": "7.0.4",
+    "jest": "26",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-typescript-transformer": "^1.2.13",
+    "react-test-renderer": "17.0.2",
+    "reactotron-core-client": "^2.8.10",
+    "typescript": "^4.4.4"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-native/all",
+      "standard",
+      "prettier",
+      "prettier/@typescript-eslint"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "react",
+      "react-native"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "project": "./tsconfig.json"
+    },
+    "settings": {
+      "react": {
+        "pragma": "React",
+        "version": "detect"
+      }
+    },
+    "globals": {
+      "__DEV__": false,
+      "jasmine": false,
+      "beforeAll": false,
+      "afterAll": false,
+      "beforeEach": false,
+      "afterEach": false,
+      "test": false,
+      "expect": false,
+      "describe": false,
+      "jest": false,
+      "it": false
+    },
+    "rules": {
+      "@typescript-eslint/ban-ts-ignore": 0,
+      "@typescript-eslint/ban-ts-comment": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/explicit-module-boundary-types": 0,
+      "@typescript-eslint/indent": 0,
+      "@typescript-eslint/member-delimiter-style": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-object-literal-type-assertion": 0,
+      "@typescript-eslint/no-var-requires": 0,
+      "comma-dangle": 0,
+      "multiline-ternary": 0,
+      "no-undef": 0,
+      "no-unused-vars": 0,
+      "no-use-before-define": "off",
+      "quotes": 0,
+      "react-native/no-raw-text": 0,
+      "react/no-unescaped-entities": 0,
+      "react/prop-types": "off",
+      "space-before-function-paren": 0,
+      "react/display-name": "off"
+    }
+  },
+  "resolutions": {
+    "@types/react": "^17"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn pre-commit",
+      "pre-push": "yarn lint",
+      "pre-build": "yarn lint"
+    }
+  }
+}
