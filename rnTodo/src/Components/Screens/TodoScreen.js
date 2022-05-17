@@ -4,10 +4,9 @@ import {
   ScrollView,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity,
   ToastAndroid,
 } from 'react-native';
-import {Box, Icon, Input, Text, Divider, VStack} from 'native-base';
+import {Box, Icon, Input, Text} from 'native-base';
 import {v4 as uuidv4} from 'uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -86,19 +85,12 @@ function TodoScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <ImageBackground
           source={require('../../Theme/bgImage.png')}
-          style={{
-            height: 350,
-            width: null,
-            paddingHorizontal: 16,
-            paddingVertical: 16,
-          }}>
+          style={styles.imageStyle}>
           <View>
             <Text style={styles.userText}>Hello User</Text>
-            <Text style={[styles.userText, {fontSize: 14, marginBottom: 8}]}>
-              What are you going to do?
-            </Text>
+            <Text style={styles.userSubtitle}>What are you going to do?</Text>
           </View>
-          <Box w="100%" style={styles.todoInput}>
+          <Box w="100%" style={styles.todoInputContainer}>
             <Input
               InputRightElement={
                 <Icon
@@ -115,7 +107,7 @@ function TodoScreen() {
                 />
               }
               placeholder="Add To-Do"
-              style={{fontFamily: font.PoppinsRegular, fontSize: 16}}
+              style={styles.todoInput}
               value={newTodoName}
               onChangeText={val => setNewTodoName(val)}
               _light={{
@@ -128,10 +120,8 @@ function TodoScreen() {
           </Box>
         </ImageBackground>
 
-        <View style={{marginTop: -215, paddingHorizontal: 16}}>
-          <Text style={[styles.userText, {fontSize: 14}]}>
-            Your To-Do List :
-          </Text>
+        <View style={styles.todoContainer}>
+          <Text style={styles.userSubtitle}>Your To-Do List :</Text>
 
           {todoList.length > 0 ? (
             todoList.map((todo, index) => (
@@ -192,14 +182,8 @@ function TodoScreen() {
               </Box>
             ))
           ) : (
-            <View style={{height: 100}}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  marginTop: 50,
-                }}>
-                Your Todo is Empty..
-              </Text>
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>Your Todo is Empty..</Text>
             </View>
           )}
         </View>
@@ -211,27 +195,54 @@ function TodoScreen() {
 export default TodoScreen;
 
 const styles = StyleSheet.create({
+  imageStyle: {
+    height: 350,
+    width: null,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
   userText: {
     paddingTop: 8,
     fontSize: 26,
     fontFamily: font.PoppinsBold,
     color: colors.white,
   },
+  userSubtitle: {
+    paddingTop: 8,
+    fontSize: 14,
+    fontFamily: font.PoppinsBold,
+    color: colors.white,
+    marginBottom: 8,
+  },
   userTextContainer: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginTop: -350,
   },
-  todoInput: {
+  todoInputContainer: {
     backgroundColor: colors.white,
     borderRadius: 5,
     borderColor: 'transparent',
   },
+  todoInput: {
+    fontFamily: font.PoppinsRegular,
+    fontSize: 16,
+  },
+  todoContainer: {
+    marginTop: -215,
+    paddingHorizontal: 16,
+  },
   cardTodo: {
-    marginTop: 8,
     borderRadius: 5,
     elevation: 0,
     borderColor: 'transparent',
     backgroundColor: colors.white,
+  },
+  emptyContainer: {
+    height: 100,
+  },
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 50,
   },
 });
