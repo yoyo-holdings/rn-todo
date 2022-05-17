@@ -15,6 +15,7 @@ import {
   Button,
   Modal,
   FormControl,
+  Center,
 } from 'native-base';
 import {v4 as uuidv4} from 'uuid';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -28,12 +29,14 @@ function NoteScreen() {
   const [NoteList, setNoteList] = useState([]);
   const [newNoteTitle, setNewNoteTitle] = useState('');
   const [newNoteText, setNewNoteText] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [noteId, setNoteId] = useState('');
+  const [noteTitle, setNoteTitle] = useState('');
+  const [noteText, setNoteText] = useState('');
 
   useEffect(() => {
     getNote();
   }, []);
-
-  // console.log(NoteList, 'NoteList');
 
   const getNote = async () => {
     try {
@@ -47,6 +50,38 @@ function NoteScreen() {
     } catch (error) {
       ToastAndroid.show(error.message, ToastAndroid.LONG);
     }
+  };
+
+  const openModal = (modal, id) => {
+    setShowModal(true);
+    setNoteId(id);
+  };
+
+  const editNote = async () => {
+    try {
+      const copyArray = NoteList.map(note => {
+        if (note.id === noteId) {
+          return {
+            ...note,
+            title: noteTitle,
+            text: noteText,
+            date: new Date(),
+          };
+        } else {
+          return note;
+        }
+      });
+      copyArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+      await AsyncStorage.setItem('usernote', JSON.stringify(copyArray));
+      setNoteList(copyArray);
+    } catch (error) {
+      ToastAndroid.show(error.message, ToastAndroid.LONG);
+    }
+
+    setShowModal(false);
+    setNoteId('');
+    setNoteTitle('');
+    setNoteText('');
   };
 
   const deleteNote = async id => {
@@ -145,7 +180,7 @@ function NoteScreen() {
                   style={{justifyContent: 'space-between'}}>
                   <Stack direction="column">
                     <Text fontSize="2xl" style={styles.note}>
-                      {note.title.toUpperCase()}
+                      {note.title}
                     </Text>
                     <Text fontSize="lg" style={styles.note}>
                       {note.text}
@@ -160,7 +195,7 @@ function NoteScreen() {
                       _light={{
                         color: 'white',
                       }}
-                      //onPress={addTodo}
+                      onPress={() => openModal(true, note.id)}
                     />
                     <Icon
                       as={<Ionicons name="trash-outline" />}
@@ -180,6 +215,43 @@ function NoteScreen() {
               <Text style={styles.emptyText}>Your Note is Empty..</Text>
             </View>
           )}
+          <Center>
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+              <Modal.Content maxWidth="400px">
+                <Modal.CloseButton />
+                <Modal.Header>Edit Note</Modal.Header>
+                <Modal.Body>
+                  <FormControl>
+                    <FormControl.Label>Note</FormControl.Label>
+                    <Input
+                      value={noteTitle}
+                      onChangeText={setNoteTitle}
+                      mb={4}
+                    />
+                    <Input value={noteText} onChangeText={setNoteText} />
+                  </FormControl>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button.Group space={2}>
+                    <Button
+                      variant="ghost"
+                      colorScheme="blueGray"
+                      onPress={() => {
+                        setShowModal(false);
+                      }}>
+                      Cancel
+                    </Button>
+                    <Button
+                      onPress={() => {
+                        editNote();
+                      }}>
+                      Save
+                    </Button>
+                  </Button.Group>
+                </Modal.Footer>
+              </Modal.Content>
+            </Modal>
+          </Center>
         </View>
       </ScrollView>
     </>
