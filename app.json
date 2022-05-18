@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Yoyo TODO APP",
+    "slug": "yoyotodo",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "splash": {
+      "image": "./assets/yoyo.jpeg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "description": "Built for test",
+    "githubUrl": "https://github.com/adanamanya"
+  }
+}
