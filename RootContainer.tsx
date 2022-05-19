@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil"
 import Config from "react-native-config"
 import { apiConfig, isAppReady } from "@stores/config"
 import { Environment } from "@config/environment"
+import { StatusBar } from "react-native"
 
 // Components
 import { NetworkLog } from "@components/organism/network-log"
@@ -35,6 +36,7 @@ export const RootContainer = () => {
 
   return (
     <NavigationContainer ref={navigationRef}>
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <AppStack />
       {Config.SHOW_NETWORK_LOGGER && !__DEV__ && <NetworkLog />}
     </NavigationContainer>

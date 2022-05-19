@@ -3,11 +3,12 @@ export default {
     // custom spacing
   },
   border: {
-    width: {
-      // border width
-    },
     radius: {
-      // border radius
+      xl: 10,
+      "2xl": 12,
+      "3xl": 14,
+      "4xl": 16,
+      "5xl": 18,
     },
   },
   font: {

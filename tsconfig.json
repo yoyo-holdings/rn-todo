@@ -21,7 +21,7 @@
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@config/*": ["./src/config/*"],
-      "@hooks/*": ["./src/hooks/*"],
+      "@hooks": ["./src/hooks"],
       "@locales": ["./src/locales"],
       "@navigations": ["./src/navigations"],
       "@navigations/*": ["./src/navigations/*"],
@@ -29,6 +29,7 @@
       "@stores": ["./src/stores"],
       "@stores/*": ["./src/stores/*"],
       "@services/*": ["./src/services/*"],
+      "@svg": ["./src/svg"],
       "@theme": ["./src/theme"],
       "@utils/*": ["./src/utils/*"]
     }
